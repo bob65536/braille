@@ -5,6 +5,8 @@
 # Written by Aadit Trivedi
 # June 6, 2018
 # Braille Library
+# Slight improvements to support accents (bob65536)
+# (Thank you Aadit)
 
 # # Dependencies
 # 1) sudo apt-get install pyaudio
@@ -92,11 +94,13 @@ ascii_braille = {}
 asciicodes = [' ','!','"','#','$','%','&','','(',')','*','+',',','-','.','/',
           '0','1','2','3','4','5','6','7','8','9',':',';','<','=','>','?','@',
           'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
-          'r','s','t','u','v','w','x','y','z','[','\\',']','^','_']
+          'r','s','t','u','v','w','x','y','z','[','\\',']','^','_',
+          'ç','é','à','è','ù','â','ê','î','ô','û','ë','ï','ü','ö','w','ì','ä','ò'] # French braille (for other languages, refer to https://en.wikipedia.org/wiki/French_Braille)
 
 brailles = ['⠀','⠮','⠐','⠼','⠫','⠩','⠯','⠄','⠷','⠾','⠡','⠬','⠠','⠤','⠨','⠌','⠴','⠂','⠆','⠒','⠲','⠢',
-        '⠖','⠶','⠦','⠔','⠱','⠰','⠣','⠿','⠜','⠹','⠈','⠁','⠃','⠉','⠙','⠑','⠋','⠛','⠓','⠊','⠚','⠅',
-        '⠇','⠍','⠝','⠕','⠏','⠟','⠗','⠎','⠞','⠥','⠧','⠺','⠭','⠽','⠵','⠪','⠳','⠻','⠘','⠸']
+            '⠖','⠶','⠦','⠔','⠱','⠰','⠣','⠿','⠜','⠹','⠈','⠁','⠃','⠉','⠙','⠑','⠋','⠛','⠓','⠊','⠚','⠅',
+            '⠇','⠍','⠝','⠕','⠏','⠟','⠗','⠎','⠞','⠥','⠧','⠺','⠭','⠽','⠵','⠪','⠳','⠻','⠘','⠸',
+            '⠯','⠿','⠷','⠮','⠾','⠡','⠣','⠩','⠹','⠱','⠫','⠻','⠳','⠪','⠺','⠌','⠜','⠬']
 
 arrayLength = len(asciicodes)
 counter = 0
@@ -249,6 +253,9 @@ def textToBraille(text):
         elif char == " ":
             final_string = final_string + ascii_braille[char]
             print(char + " " + str(charToArray[" "]))
+        else:
+            final_string = final_string + ascii_braille[char]
+            print(char + " " + str("---")) # Not implemented yet... WIP
     print(final_string)
 
 def speechToBraille():
